@@ -26,6 +26,14 @@ export class HTTP401Error extends HTTPClientError {
     }
 }
 
+export class HTTP403Error extends HTTPClientError {
+    statusCode = 403
+
+    constructor(message = 'Forbidden'){
+        super(message)
+    }
+}
+
 export class HTTP404Error extends HTTPClientError {
     statusCode = 404
 

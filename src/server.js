@@ -2,6 +2,7 @@ import http from 'http'
 import express from 'express'
 import middleware from './middleware'
 import routes from './services'
+import errorHandlers from './middleware/errorHandlers'
 import {
     applyMiddleware,
     applyRoutes
@@ -20,7 +21,7 @@ process.on('unhandledRejection', e => {
 const app = express();
 applyMiddleware(middleware, app)
 applyRoutes(routes, app)
-// TODO apply error handlers here
+applyMiddleware(errorHandlers, app)
 
 const { PORT = 5000 } = process.env
 const server = http.createServer(app)
