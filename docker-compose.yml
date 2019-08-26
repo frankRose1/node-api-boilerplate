@@ -12,6 +12,10 @@ services:
 
   db:
     image: 'mongo'
+    env_file: .env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$MONGO_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
     ports:
       - '27017:27017'
     volumes:
@@ -19,6 +23,9 @@ services:
 # TODO change command to use nodemon for development
   web:
     build: .
+    env_file: '.env'
+    environment:
+      - MONGO_HOSTNAME=db
     ports:
       - '5000:5000'
     depends_on:
