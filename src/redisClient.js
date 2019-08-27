@@ -6,9 +6,10 @@ import bluebird from 'bluebird'
 bluebird.promisifyAll(redis.RedisClient.prototype);
 bluebird.promisifyAll(redis.Multi.prototype);
 
-// TODO change this to an ENV variable
-const REDIS_URI = 'redis://redis:6379';
+const client = redis.createClient({ host: 'redis' });
 
-const client = redis.createClient(REDIS_URI);
+client.on('error', err => {
+    console.log(`Error connecting to redis: ${err}`)
+})
 
 export default client

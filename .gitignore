@@ -68,3 +68,6 @@ typings/
 
 #in memory mongo
 globalConfigMongo.json
+
+# build directory
+dist/
