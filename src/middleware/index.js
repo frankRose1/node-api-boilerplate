@@ -7,9 +7,11 @@ import {
     handleBodyRequestParsing,
     handleCompression
 } from './common'
+import { handleRedisCache } from './caching'
 
 export default [
     handleCors,
     handleBodyRequestParsing,
-    handleCompression
+    handleCompression,
+    handleRedisCache
 ]
