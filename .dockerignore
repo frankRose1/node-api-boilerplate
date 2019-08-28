@@ -1,6 +1,9 @@
 .git
-node_modules/
+*Dockerfile*
+*docker-compose*
+node_modules
 .env
 example.env
-src/
-.babelrc
+dist/
+.cache
+coverage/

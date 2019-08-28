@@ -13,7 +13,7 @@ const handleClientError = app => {
 }
 
 const handleServerError = app => {
-    app.use((err, res, res, next) => {
+    app.use((err, req, res, next) => {
         ErrorHandler.serverError(err, res, next)
     })
 }
