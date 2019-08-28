@@ -22,9 +22,7 @@ services:
       - 'db:/var/lib/db/data'
     healthcheck:
       test: echo 'db.runCommand("ping").ok' | mongo localhost:27017/test --quiet
-# TODO change command to use nodemon for development
-# Currently the api command will use the npm scripts to build the dist dir
-# where the compiled JS will be
+
   api:
     build: .
     command: npm run dev
