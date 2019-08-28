@@ -8,6 +8,7 @@ import {
     applyMiddleware,
     applyRoutes
 } from './utils'
+import './services/user/model'
 
 process.on('uncaughtException', e => {
     console.log(e);
