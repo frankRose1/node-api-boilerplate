@@ -4,7 +4,7 @@
  * @param {Object} app - express application
  */
 export const applyMiddleware = (middleware, app) => {
-    for (wrapper of middleware) {
+    for (const wrapper of middleware) {
         wrapper(app)
     }
 }
@@ -15,7 +15,7 @@ export const applyMiddleware = (middleware, app) => {
  * @param {Object} app - express application
  */
 export const applyRoutes = (routes, app) => {
-    for (route of routes) {
+    for (const route of routes) {
         const { path, method, handler } = route
         app[method](path, handler)
     }

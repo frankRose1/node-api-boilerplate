@@ -18,16 +18,22 @@ const dbOptions = {
 const MONGO_URI = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}?authSource=admin`;
 
 /**
- * Connect to the mongo database
+ * Connect to the mongo database. Wait for a successful 
+ * connection before starting the server.
+ * @param {Object} server - application http server
+ * @param {Number} port - port the server is listening on
  */
-const initDb = () => {
+const initDBAndServer = (server, port) => {
     mongoose.connect(MONGO_URI, dbOptions)
         .then(() => {
             console.log('Connected to Mongo...');
+            server.listen(port, () => {
+                console.log(`Server is running on http://localhost:${port}...`)
+            })
         })
         .catch(err => {
             console.error(`Error connecting to Mongo: ${err}`)
         })
 }
 
-export default initDb
+export default initDBAndServer

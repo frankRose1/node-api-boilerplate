@@ -11,33 +11,29 @@ export class HTTPClientError extends Error {
 }
 
 export class HTTP400Error extends HTTPClientError {
-    statusCode = 400
-
     constructor(message = 'Bad Request'){
         super(message)
+        this.statusCode = 400
     }
 }
 
 export class HTTP401Error extends HTTPClientError {
-    statusCode = 401
-
     constructor(message = 'Unauthorized'){
         super(message)
+        this.statusCode = 401
     }
 }
 
 export class HTTP403Error extends HTTPClientError {
-    statusCode = 403
-
     constructor(message = 'Forbidden'){
         super(message)
+        this.statusCode = 403
     }
 }
 
 export class HTTP404Error extends HTTPClientError {
-    statusCode = 404
-
     constructor(message = 'Not Found'){
         super(message)
+        this.statusCode = 404
     }
 }
