@@ -9,7 +9,8 @@
     "clean": "rm -rf dist && mkdir dist",
     "build-babel": "babel -d ./dist ./src -s",
     "build": "npm run clean && npm run build-babel",
-    "dev": "babel-node src/server.js"
+    "dev": "babel-node src/server.js",
+    "test": "jest --coverage --verbose"
   },
   "repository": {
     "type": "git",
@@ -28,9 +29,11 @@
     "redis": "^2.8.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",
     "@babel/preset-env": "7.5.5",
-    "@babel/cli": "^7.5.5"
+    "jest": "^24.9.0",
+    "supertest": "^4.0.2"
   }
 }
