@@ -1,4 +1,4 @@
- import client from '../redisClient'
+ import client from '../databases/redisClient'
  
  /**
   * Add the redis client to middleware so that it can be
