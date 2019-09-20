@@ -2,7 +2,7 @@ export default [
     {
         path: '/',
         method: 'get',
-        handler: async (req, res) => {
+        handler: (req, res) => {
             res.send('Hello world!')
         }
     }

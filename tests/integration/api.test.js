@@ -4,6 +4,7 @@ import middleware from '../../src/middleware'
 import errorHandlers from '../../src/middleware/errorHandlers'
 import routes from '../../src/services'
 import { applyRoutes, applyMiddleware } from '../../src/utils'
+import '../../src/services/user/model'
 
 // an example of how you could test api endpoints
 describe('routes', () => {
