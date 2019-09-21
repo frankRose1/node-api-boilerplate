@@ -1,7 +1,7 @@
 {
   "name": "node-docker-redis-mongodb-boilerplate",
   "version": "1.0.0",
-  "description": "Development for node-redis-mongodb apps made easy with docker.",
+  "description": "Development for node, redis, and mongodb apps made easy with docker.",
   "main": "./src/server.js",
   "scripts": {
     "prestart": "npm run -s build",
