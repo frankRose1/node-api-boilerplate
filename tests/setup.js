@@ -1,5 +1,14 @@
 import mongoose from 'mongoose'
 
+const { 
+    MONGO_USERNAME,
+    MONGO_PASSWORD,
+    MONGO_HOSTNAME,
+    MONGO_PORT
+} = process.env;
+
+const base_uri = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}:${MONGO_PORT}`;
+
 /**
  * Remove all collections in the database
  */
@@ -33,13 +42,13 @@ const dropAllCollections = async () => {
  * It will also remove collections after each test for a clean slate. 
  * After all tests in a suite run it will drop all collections and 
  * disconnect mongoose
- * @param {String} databaseName - name of the mongodb database. Each test suite should
- * have it's own unique databaseName 
+ * @param {String} dbName - name of the mongodb database. Each test suite should
+ * have it's own unique dbName 
  */
-export const setupDB = databaseName => {
+export const setupDB = dbName => {
     // Connect to mongodb
     beforeAll(async () => {
-        const mongo_uri = `mongodb://127.0.0.1/${databaseName}`
+        const mongo_uri = `${base_uri}/${dbName}?authSource=admin`;
         await mongoose.connect(mongo_uri, { useNewUrlParser: true, useCreateIndex: true })
     })
 
