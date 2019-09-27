@@ -1,19 +1,15 @@
-import express from 'express'
 import request from 'supertest'
-import middleware from '../../src/middleware'
-import errorHandlers from '../../src/middleware/errorHandlers'
-import routes from '../../src/services'
-import { applyRoutes, applyMiddleware } from '../../src/utils'
+import { createApp } from '../../src/app'
+import { setupDB } from '../setup'
 
 // an example of how you could test api endpoints
 describe('routes', () => {
     let app;
 
+    setupDB('api-test')
+
     beforeEach(()=>{
-        app = express()
-        applyMiddleware(middleware, app)
-        applyRoutes(routes, app)
-        applyMiddleware(errorHandlers, app)
+        app = createApp()
     })
 
     describe('not found', () => {

@@ -1,7 +1,5 @@
 import mongoose from 'mongoose'
 
-import '../src/services/user/model'
-
 /**
  * Remove all collections in the database
  */
@@ -30,10 +28,11 @@ const dropAllCollections = async () => {
 }
 
 /**
- * This helper function will connect to mongodb before all tests run and
- * allow easy concurrent testing. It will also remove collections after each test
- * for a clean slate. After all tests run it will drop all collections and disconnect
- * mongoose
+ * This helper function allows for easy concurrent testing. 
+ * Will connect to mongodb before all tests in a suite run.
+ * It will also remove collections after each test for a clean slate. 
+ * After all tests in a suite run it will drop all collections and 
+ * disconnect mongoose
  * @param {String} databaseName - name of the mongodb database. Each test suite should
  * have it's own unique databaseName 
  */

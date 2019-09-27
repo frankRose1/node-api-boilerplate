@@ -42,6 +42,3 @@ process.on('SIGINIT', () => {
         process.exit(0); 
       }); 
 })
-
-// import the models
-import '../services/user/model'
