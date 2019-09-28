@@ -10,7 +10,7 @@
     "build-babel": "babel -d ./dist ./src -s",
     "build": "npm run clean && npm run build-babel",
     "dev": "babel-node src/server.js",
-    "test": "jest --coverage --verbose"
+    "test": "jest --coverage --detectOpenHandles"
   },
   "repository": {
     "type": "git",

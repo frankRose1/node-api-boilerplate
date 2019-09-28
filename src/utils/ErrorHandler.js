@@ -17,7 +17,9 @@ export const notFoundError = () => {
 export const clientError = (err, res, next) => {
     if (err instanceof HTTPClientError) {
         console.warn(err)
-        res.status(err.statusCode).send(err.message)
+        res
+          .status(err.statusCode)
+          .json({ error: err.message })
     } else {
         next(err)
     }
@@ -33,8 +35,15 @@ export const clientError = (err, res, next) => {
 export const serverError = (err, res, next) => {
     console.error(err)
     if (process.env.NODE_ENV == 'production'){
-        res.status(500).send('Internal server error')
+        res
+          .status(500)
+          .json({ error: 'Internal server error.' })
     } else {
-        res.status(500).send(err.stack)
+        res
+          .status(500)
+          .json({ 
+              error: 'Server error.',
+              stackTrace: err.stack
+           })
     }
 }

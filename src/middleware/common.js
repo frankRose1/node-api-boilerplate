@@ -1,9 +1,11 @@
 /**
  * Common middleware such as cors and compression
  */
-import cors from 'cors'
-import parser from 'body-parser'
-import compression from 'compression'
+import cors from 'cors';
+import parser from 'body-parser';
+import compression from 'compression';
+import client from '../databases/redisClient';
+
 
 /**
  * Apply cors middlware to the express app
@@ -28,4 +30,16 @@ export const handleBodyRequestParsing = app => {
  */
 export const handleCompression = app => {
     app.use(compression())
+}
+
+/**
+ * Add the redis client to middleware so that it can be
+ * easily accessed inside of route handlers
+ * @param {Object} app - express app 
+ */
+export const handleRedisCache = app => {
+    app.use((req, res, next) => {
+        req.redis = client
+        next()
+    })
 }

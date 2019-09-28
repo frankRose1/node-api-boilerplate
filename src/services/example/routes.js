@@ -3,7 +3,7 @@ export default [
         path: '/',
         method: 'get',
         handler: (req, res) => {
-            res.send('Hello world!')
+            res.json({ message: 'Hello World!' })
         }
     }
 ]

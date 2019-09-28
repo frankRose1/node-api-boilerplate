@@ -22,7 +22,7 @@ mongoose.connect(MONGO_URI, dbOptions)
 
 // successful connection
 mongoose.connection.on('connected', () => {
-    console.log(`Mongoose connection open to ${MONGO_URI}`)
+    console.log(`Connected to MongoDB`)
 })
 
 // if connection throws an error

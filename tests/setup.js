@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import client from '../src/databases/redisClient'
 
 const { 
     MONGO_USERNAME,
@@ -57,9 +58,12 @@ export const setupDB = dbName => {
         await removeAllCollections()
     })
 
-    // Drop collections and disconnect mongoose
+    // Drop collections, disconnect mongoose, disconnect redis
     afterAll(async () => {
         await dropAllCollections()
-        await mongoose.connection.close()
+        await Promise.all([
+            mongoose.connection.close(),
+            client.quit()
+        ])
     })
 }

@@ -5,9 +5,10 @@
 import {
     handleCors,
     handleBodyRequestParsing,
-    handleCompression
+    handleCompression,
+    handleRedisCache
 } from './common'
-import { handleRedisCache } from './caching'
+
 
 export default [
     handleCors,
