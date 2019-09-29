@@ -11,5 +11,5 @@ RUN npm install && npm cache clean --force
 
 COPY . .
 
-EXPOSE 5000
-CMD ['node', 'dist/server.js']
+EXPOSE 8000
+CMD ["node", "dist/server.js"]

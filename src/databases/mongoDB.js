@@ -18,27 +18,41 @@ const dbOptions = {
 
 const MONGO_URI = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}?authSource=admin`;
 
-mongoose.connect(MONGO_URI, dbOptions)
-
 // successful connection
 mongoose.connection.on('connected', () => {
-    console.log(`Connected to MongoDB`)
+    console.log(`Connected to MongoDB`);
 })
 
 // if connection throws an error
 mongoose.connection.on('error', err => {
-    console.log(`Mongoose connection error ${err}`)
+    console.log(`MongoDB connection error ${err}`);
+    process.exit(1)
 })
 
 // when connection is disconnected
 mongoose.connection.on('disconnected', () => {
-    console.log('Mongoose connection was disconnected')
+    console.log('MongoDB connection was disconnected')
 })
 
 // If node process ends, close the mongoose connection
 process.on('SIGINIT', () => {
     mongoose.connection.close(() => { 
-        console.log('Mongoose default connection disconnected through app termination'); 
+        console.log('MogoDB connection disconnected through app termination'); 
         process.exit(0); 
       }); 
 })
+
+/**
+ * Connect to MongoDB and wait for a successful connection 
+ * before starting the server and listening for requests.
+ * @param {Object} server - HTTP server
+ * @param {Number} port - Port for the HTTP server
+ */
+export const connectMongoStartServer = (server, port) => {
+    mongoose.connect(MONGO_URI, dbOptions)
+        .then(() => {
+            server.listen(port, () => {
+                console.log(`Server is running on http://localhost:${port}...`)
+            })
+        })
+}
